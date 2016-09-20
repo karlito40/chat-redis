@@ -24,7 +24,7 @@ function login(req, res) {
 function loginProcess(req, res) {
     var isAuth = util.auth(req.body.username, req.body.password, req.session);
     if(isAuth) {
-        res.redirect('/chat');
+        res.redirect(config.routes.chat);
     } else {
         req.flash('error', 'Wrong username or password');
         res.redirect(config.routes.login);
@@ -36,6 +36,6 @@ function chat(req, res) {
 }
 
 function logOut(req, res) {
-    util.logOut(req.session);
+    util.logOut(req);
     res.redirect('/');
 }

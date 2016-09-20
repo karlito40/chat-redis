@@ -13,6 +13,7 @@ var csrf = require('csurf');
 var flash = require('connect-flash');
 var config = require('./config');
 var io = require('./socket.io');
+var passport = require('./passport');
 
 app.set('view engine', 'ejs');
 app.set('view options', {defaultLayout: 'layout'})
@@ -28,6 +29,8 @@ app.use(session({
         url: config.redisUrl
     })
 }));
+app.use(passport.passport.initialize());
+app.use(passport.passport.session());
 app.use(flash());
 app.use(util.templateRoutes);
 app.use(bodyParser.json());
@@ -39,8 +42,9 @@ app.use(util.authenticated);
 app.get('/', routes.index);
 app.get(config.routes.login, routes.login);
 app.post(config.routes.login, routes.loginProcess);
-app.get('/chat', [util.requireAuthentification], routes.chat);
+app.get(config.routes.chat, [util.requireAuthentification], routes.chat);
 app.get(config.routes.logout, routes.logOut);
+passport.routes(app);
 
 app.use(errorHandlers.error);
 app.use(errorHandlers.notFound);
