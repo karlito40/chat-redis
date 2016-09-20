@@ -1,0 +1,25 @@
+<form method="post">
+    <% if(message.length > 0) { %>
+        <div class="alert alert-danger">
+            <%= message %>
+        </div>
+    <% } %>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="username" name="username"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="password" name="password"/>
+        <input type="hidden" name="_csrf" value="<%= token %>"
+    </div>
+    <button class="btn btn-primary btn-block">Login</button>
+</form>
+<div class="row top-margin">
+    <div class="col-sm-6">
+        <button class="btn btn-block facebook"><i class="fa fa-facebook"></i>Facebook</button>
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-block google"><i class="fa fa-google-plus"></i>Google</button>
+    </div>
+</div>
