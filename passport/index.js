@@ -1,9 +1,10 @@
 var passport = require('passport');
-var facebook = require('passport-facebook').Strategy;
+var Facebook = require('passport-facebook').Strategy;
 var config = require('../config');
-var google = require('passport-google-oauth').OAuth2Strategy;
+var Google = require('passport-google-oauth').OAuth2Strategy;
+var Local = require('passport-local').Strategy;
 
-passport.use(new facebook({
+passport.use(new Facebook({
     clientID: config.facebook.appID,
     clientSecret: config.facebook.appSecret,
     callbackURL: config.host + config.routes.facebookAuthCallback
@@ -11,13 +12,21 @@ passport.use(new facebook({
     done(null, profile);
 }));
 
-passport.use(new google({
+passport.use(new Google({
     clientID: config.google.clientID,
     clientSecret: config.google.clientSecret,
     callbackURL: config.host + config.routes.googleAuthCallback
 }, function(accessToken, refreshToken, profile, done){
     done(null, profile);
 }));
+
+passport.use(new Local(function(username, password, done){
+    done(null, {
+        id: "ezor334",
+        displayName: 'karl martin',
+        username: 'karl'
+    })
+}))
 
 
 passport.serializeUser(function(user, done){
@@ -46,6 +55,11 @@ var routes = function(app) {
         failureRedirect: config.routes.login,
         failureFlash: true
     }));
+    app.post(config.routes.login, passport.authenticate('local', {
+        successRedirect: config.routes.chat,
+        failureRedirect: config.routes.login,
+        failureFlash: true 
+    }))
 }
 
 exports.routes = routes;

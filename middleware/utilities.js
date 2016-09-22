@@ -27,15 +27,6 @@ module.exports.requireAuthentification = function(req, res, next) {
     }
 }
 
-module.exports.auth = function(username, password, session) {
-    var isAuth = (username === 'admin' && password === 'password');
-    if(isAuth) {
-        session.isAuthenticated = isAuth;
-        session.user = {username: username};
-    }
-    return isAuth;
-}
-
 module.exports.logOut = function(req) {
     req.session.isAuthenticated = false;
     req.logout();

@@ -41,7 +41,8 @@ app.use(util.authenticated);
 
 app.get('/', routes.index);
 app.get(config.routes.login, routes.login);
-app.post(config.routes.login, routes.loginProcess);
+//app.post(config.routes.login, routes.loginProcess);
+
 app.get(config.routes.chat, [util.requireAuthentification], routes.chat);
 app.get(config.routes.logout, routes.logOut);
 passport.routes(app);
