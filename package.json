@@ -27,7 +27,8 @@
     "passport-google-oauth": "0.1.5",
     "scmp": "0.0.3",
     "amqp": "0.2.0",
-    "q": "1.0.1"
+    "q": "1.0.1",
+    "flow-maintained": "0.2.3"
   },
   "author": "",
   "license": "ISC"

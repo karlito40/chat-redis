@@ -1,0 +1,21 @@
+{
+  "name": "redis-chat",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/karlito40/chat-redis",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "0.11.1",
+    "postal.js": "0.10.1",
+    "backbone": "1.1.2",
+    "jquery": "2.1.1",
+    "momentjs": "2.8.1"
+  }
+}
